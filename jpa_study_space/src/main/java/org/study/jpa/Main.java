@@ -11,7 +11,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa_study_space");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpaStudySpace");
 
         EntityManager em = emf.createEntityManager();
 
@@ -23,6 +23,7 @@ public class Main {
             tx.commit();
 
         }catch(Exception e) {
+            e.printStackTrace();
             tx.rollback();
         }finally {
             em.close();
@@ -33,9 +34,7 @@ public class Main {
 
     public static void logic(EntityManager em){
 
-        String id = "id1";
         Member member = new Member();
-        member.setId(id);
         member.setUsername("테스터");
         member.setAge(2);
 
@@ -43,7 +42,7 @@ public class Main {
 
         member.setAge(20);
 
-        Member findMember = em.find(Member.class, id);
+        Member findMember = em.find(Member.class, member.getId());
         System.out.println("findMember = " + findMember.getUsername() + ", "+ findMember.getAge());
 
         List<Member> members = em.createQuery("select m from Member m", Member.class)

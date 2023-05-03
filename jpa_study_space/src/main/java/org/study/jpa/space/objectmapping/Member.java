@@ -1,29 +1,30 @@
 package org.study.jpa.space.objectmapping;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
 
 @Entity
-@Table(name = "MEMBER")
+@Table
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member {
 
     @Id
-    @Column(name = "ID")
-    private String id;
+    @GeneratedValue
+    private Long id;
 
-    @Column(name = "NAME")
     private String username;
 
-    @Column(name = "AGE")
     private Integer age;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
