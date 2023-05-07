@@ -2,8 +2,8 @@ package org.study.jpa.space.querydsl;
 
 
 import com.querydsl.jpa.impl.JPAQuery;
-import org.study.jpa.space.objectmapping.Member;
-import org.study.jpa.space.objectmapping.QMember;
+import org.study.jpa.main.Member;
+import org.study.jpa.main.QMember;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

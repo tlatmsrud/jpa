@@ -1,6 +1,7 @@
 package org.study.jpa;
 
-import org.study.jpa.space.objectmapping.Member;
+
+import org.study.jpa.main.Member;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,7 +12,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpaStudySpace");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa_study_space");
 
         EntityManager em = emf.createEntityManager();
 

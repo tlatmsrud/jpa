@@ -1,6 +1,6 @@
 package org.study.jpa.space.merge;
 
-import org.study.jpa.space.objectmapping.Member;
+import org.study.jpa.main.Member;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
