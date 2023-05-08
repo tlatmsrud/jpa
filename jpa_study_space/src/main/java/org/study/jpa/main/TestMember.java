@@ -10,12 +10,12 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "MEMBER")
+@Table(name = "TEST_MEMBER")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Member {
+public class TestMember {
 
     @Id
     @Column(name = "ID")

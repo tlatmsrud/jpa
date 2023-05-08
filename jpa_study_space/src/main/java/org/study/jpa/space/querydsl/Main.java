@@ -2,8 +2,8 @@ package org.study.jpa.space.querydsl;
 
 
 import com.querydsl.jpa.impl.JPAQuery;
-import org.study.jpa.main.Member;
-import org.study.jpa.main.QMember;
+import org.study.jpa.main.QTestMember;
+import org.study.jpa.main.TestMember;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -23,10 +23,10 @@ public class Main {
         tx.begin();
 
         try{
-            JPAQuery<Member> query = new JPAQuery(em);
-            QMember qMember = new QMember("m");
+            JPAQuery<TestMember> query = new JPAQuery(em);
+            QTestMember qMember = new QTestMember("m");
 
-            List<Member> members =query.from(qMember)
+            List<TestMember> testMembers =query.from(qMember)
                     .where(qMember.username.eq("test0"))
                     .orderBy(qMember.username.asc())
                     .fetch();

@@ -1,6 +1,6 @@
 package org.study.jpa.space.merge;
 
-import org.study.jpa.main.Member;
+import org.study.jpa.main.TestMember;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,16 +14,16 @@ public class ExamMergeMain {
     public static void main(String args[]){
 
 
-        Member member = createMember("memberA", "회원1");
+        TestMember testMember = createMember("memberA", "회원1");
 
         // 준영속 상태라 setUsername이 먹히지 않음.
-        member.setUsername("회원명변경");
+        testMember.setUsername("회원명변경");
 
-        mergeMember(member);
+        mergeMember(testMember);
     }
 
     // DB에 데이터 insert 후 em.close 하여 준영속된 member 객체를 리턴
-    static Member createMember(String id, String username){
+    static TestMember createMember(String id, String username){
 
         EntityManager em = emf.createEntityManager();
 
@@ -31,19 +31,19 @@ public class ExamMergeMain {
 
         tx.begin();
 
-        Member member = new Member();
-        member.setId(id);
-        member.setUsername(username);
+        TestMember testMember = new TestMember();
+        testMember.setId(id);
+        testMember.setUsername(username);
 
-        em.persist(member);
+        em.persist(testMember);
         tx.commit();
 
         em.close();
 
-        return member;
+        return testMember;
     }
 
-    static void mergeMember(Member member){
+    static void mergeMember(TestMember testMember){
 
         EntityManager em = emf.createEntityManager();
 
@@ -53,17 +53,17 @@ public class ExamMergeMain {
 
         // 준영속 상태의 member를 영속상태로 변경
         //Member mergeMember = em.merge(member);
-        member = em.merge(member);
+        testMember = em.merge(testMember);
         tx.commit();
 
         // 준영속 상태
-        System.out.println("member = " + member.getUsername());
+        System.out.println("member = " + testMember.getUsername());
 
         // 영속상태
-        System.out.println("mergeMember = " + member.getUsername());
+        System.out.println("mergeMember = " + testMember.getUsername());
 
-        System.out.println("em contains member = " + em.contains(member));
-        System.out.println("em contains mergeMember = " + em.contains(member));
+        System.out.println("em contains member = " + em.contains(testMember));
+        System.out.println("em contains mergeMember = " + em.contains(testMember));
 
         em.close();
     }

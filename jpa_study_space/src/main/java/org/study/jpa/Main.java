@@ -1,7 +1,7 @@
 package org.study.jpa;
 
 
-import org.study.jpa.main.Member;
+import org.study.jpa.main.TestMember;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,7 +35,7 @@ public class Main {
 
     public static void logic(EntityManager em){
 
-        Member member = new Member();
+        TestMember member = new TestMember();
         member.setUsername("테스터");
         member.setAge(2);
 
@@ -43,13 +43,13 @@ public class Main {
 
         member.setAge(20);
 
-        Member findMember = em.find(Member.class, member.getId());
-        System.out.println("findMember = " + findMember.getUsername() + ", "+ findMember.getAge());
+        TestMember testMember = em.find(TestMember.class, member.getId());
+        System.out.println("findMember = " + testMember.getUsername() + ", "+ testMember.getAge());
 
-        List<Member> members = em.createQuery("select m from Member m", Member.class)
+        List<TestMember> testMembers = em.createQuery("select m from TestMember m", TestMember.class)
                 .getResultList();
 
-        System.out.println("size : "+ members.size());
+        System.out.println("size : "+ testMembers.size());
 
         em.remove(member);
 
