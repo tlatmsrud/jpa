@@ -9,6 +9,8 @@
         <class>org.study.jpa.entity.Order</class>
         <class>org.study.jpa.entity.OrderItem</class>
         <class>org.study.jpa.entity.Item</class>
+        <class>org.study.jpa.space.relationmapping.TTeam</class>
+        <class>org.study.jpa.space.relationmapping.TMember</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>

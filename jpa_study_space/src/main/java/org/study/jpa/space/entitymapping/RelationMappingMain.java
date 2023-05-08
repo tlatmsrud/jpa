@@ -49,13 +49,8 @@ public class RelationMappingMain {
         orderItem2.setItem(item2);
         orderItem2.setOrder(order);
 
-        List<OrderItem> orderItemList = new ArrayList<>();
-
-        orderItemList.add(orderItem1);
-        orderItemList.add(orderItem2);
-
-        order.setOrderItemList(orderItemList);
-
+        order.addOrderItem(orderItem1);
+        order.addOrderItem(orderItem2);
         tx.commit();
 
         Order findOrder = em.find(Order.class, order.getId());
