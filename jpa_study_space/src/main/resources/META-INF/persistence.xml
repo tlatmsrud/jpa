@@ -11,8 +11,9 @@
         <class>org.study.jpa.entity.Item</class>
         <class>org.study.jpa.space.relationmapping.TTeam</class>
         <class>org.study.jpa.space.relationmapping.TMember</class>
-        <class>org.study.jpa.space.multiplicity.oneToOneTwoWayM.MPMember</class>
-        <class>org.study.jpa.space.multiplicity.oneToOneTwoWayM.MPLocker</class>
+        <class>org.study.jpa.space.multiplicity.manyToMany.MPMember</class>
+        <class>org.study.jpa.space.multiplicity.manyToMany.MPProduct</class>
+        <class>org.study.jpa.space.multiplicity.manyToMany.MPMemberProduct</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
