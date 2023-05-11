@@ -1,9 +1,12 @@
-package org.study.jpa.space.multiplicity.manyToMany;
+package org.study.jpa.space.multiplicity.manyToManyNoIdClass;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,5 +22,5 @@ public class MPMember {
     private String username;
 
     @OneToMany(mappedBy = "member")
-    private List<MPMemberProduct> memberProductList = new ArrayList<>();
+    private List<MPOrder> orders = new ArrayList<>();
 }

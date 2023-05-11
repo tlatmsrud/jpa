@@ -1,9 +1,6 @@
 package org.study.jpa.space.entitymapping;
 
-import org.study.jpa.entity.Item;
-import org.study.jpa.entity.Order;
-import org.study.jpa.entity.Member;
-import org.study.jpa.entity.OrderItem;
+import org.study.jpa.entity.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,8 +32,30 @@ public class RelationMappingMain {
         em.persist(item1);
         em.persist(item2);
 
+        Category category = new Category();
+        category.setName("카테고리1");
+        em.persist(category);
+
+        CategoryItem categoryItem1 = new CategoryItem();
+        categoryItem1.setCategory(category);
+        categoryItem1.setItem(item1);
+        em.persist(categoryItem1);
+
+        CategoryItem categoryItem2 = new CategoryItem();
+        categoryItem2.setCategory(category);
+        categoryItem2.setItem(item2);
+        em.persist(categoryItem2);
+
+        Delivery delivery = new Delivery();
+        delivery.setStatus(DeliveryStatus.READY);
+        delivery.setCity("시티");
+        delivery.setStreet("거리");
+        delivery.setZipcode("집주소");
+        em.persist(delivery);
+
         Order order = new Order();
         order.setMember(member);
+        order.setDelivery(delivery);
         em.persist(order);
 
         OrderItem orderItem1 = new OrderItem();

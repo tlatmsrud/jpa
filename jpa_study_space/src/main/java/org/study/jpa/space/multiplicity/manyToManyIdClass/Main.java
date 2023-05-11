@@ -1,4 +1,4 @@
-package org.study.jpa.space.multiplicity.manyToMany;
+package org.study.jpa.space.multiplicity.manyToManyIdClass;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -32,6 +32,7 @@ public class Main {
 
     public static void logic(EntityManager em){
 
+        // 생성
         MPMember member = new MPMember();
         member.setId("user1");
         member.setUsername("유저1");
@@ -48,6 +49,23 @@ public class Main {
         memberProduct.setOrderAmount(2);
 
         em.persist(memberProduct);
+
+        em.flush();
+        em.clear();
+
+        // 조회
+        MPMemberProductId memberProductId = new MPMemberProductId();
+        memberProductId.setMember("user1");
+        memberProductId.setProduct("product1");
+
+        MPMemberProduct findMemberProduct = em.find(MPMemberProduct.class, memberProductId);
+
+        MPMember findMember = findMemberProduct.getMember();
+        MPProduct findProduct = findMemberProduct.getProduct();
+
+        System.out.println("member = "+findMember.getUsername());
+        System.out.println("product = "+findProduct.getName());
+
 
     }
 }

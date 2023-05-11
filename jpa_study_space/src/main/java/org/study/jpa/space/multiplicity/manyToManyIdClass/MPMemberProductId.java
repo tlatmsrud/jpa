@@ -1,8 +1,11 @@
-package org.study.jpa.space.multiplicity.manyToMany;
+package org.study.jpa.space.multiplicity.manyToManyIdClass;
+
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@Setter
 public class MPMemberProductId implements Serializable {
 
     private String member;

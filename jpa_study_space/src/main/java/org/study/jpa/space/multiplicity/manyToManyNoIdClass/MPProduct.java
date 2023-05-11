@@ -1,4 +1,4 @@
-package org.study.jpa.space.multiplicity.manyToMany;
+package org.study.jpa.space.multiplicity.manyToManyNoIdClass;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -9,11 +9,14 @@
         <class>org.study.jpa.entity.Order</class>
         <class>org.study.jpa.entity.OrderItem</class>
         <class>org.study.jpa.entity.Item</class>
+        <class>org.study.jpa.entity.Category</class>
+        <class>org.study.jpa.entity.Delivery</class>
+        <class>org.study.jpa.entity.CategoryItem</class>
         <class>org.study.jpa.space.relationmapping.TTeam</class>
         <class>org.study.jpa.space.relationmapping.TMember</class>
-        <class>org.study.jpa.space.multiplicity.manyToMany.MPMember</class>
-        <class>org.study.jpa.space.multiplicity.manyToMany.MPProduct</class>
-        <class>org.study.jpa.space.multiplicity.manyToMany.MPMemberProduct</class>
+        <class>org.study.jpa.space.multiplicity.manyToManyNoIdClass.MPMember</class>
+        <class>org.study.jpa.space.multiplicity.manyToManyNoIdClass.MPProduct</class>
+        <class>org.study.jpa.space.multiplicity.manyToManyNoIdClass.MPOrder</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>

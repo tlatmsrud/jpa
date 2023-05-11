@@ -23,5 +23,8 @@ public class Item {
 
     private int stockQuantity;
 
+    @OneToMany(mappedBy = "item")
+    List<CategoryItem> categoryItems = new ArrayList<>();
+
 }
 
