@@ -1,13 +1,14 @@
 package org.study.jpa.space.entitymapping;
 
 import org.study.jpa.entity.*;
+import org.study.jpa.entity.item.Book;
+import org.study.jpa.entity.item.Item;
+import org.study.jpa.entity.item.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RelationMappingMain {
 
@@ -25,10 +26,10 @@ public class RelationMappingMain {
         member.setName("테스터");
         em.persist(member);
 
-        Item item1 = new Item();
-        item1.setName("아이템1");
-        Item item2 = new Item();
-        item2.setName("아이템2");
+        Item item1 = new Book();
+        item1.setName("책1");
+        Item item2 = new Movie();
+        item2.setName("영화1");
         em.persist(item1);
         em.persist(item2);
 

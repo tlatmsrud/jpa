@@ -1,16 +1,19 @@
-package org.study.jpa.entity;
+package org.study.jpa.entity.item;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.study.jpa.entity.CategoryItem;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn
 @Getter
 @Setter
-public class Item {
+public abstract class Item {
 
     @Id
     @GeneratedValue

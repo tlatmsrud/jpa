@@ -2,6 +2,7 @@ package org.study.jpa.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.study.jpa.entity.item.Item;
 
 import javax.persistence.*;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "ORDER_ITEM")
 @Getter
 @Setter
-public class OrderItem {
+public class OrderItem extends BaseEntity{
 
     @Id
     @GeneratedValue
