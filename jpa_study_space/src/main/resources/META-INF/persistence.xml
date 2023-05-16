@@ -16,6 +16,8 @@
         <class>org.study.jpa.entity.Delivery</class>
         <class>org.study.jpa.entity.CategoryItem</class>
         <class>org.study.jpa.space.highlevelmapping.idclass.ICParent</class>
+        <class>org.study.jpa.space.proxy.Student</class>
+        <class>org.study.jpa.space.proxy.Classroom</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
