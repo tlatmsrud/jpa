@@ -18,7 +18,7 @@ public class Student {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "CLASS_ID")
+    @JoinColumn(name = "CLASS_ID", nullable = false)
     private Classroom classroom;
 
     public void setClassroom(Classroom classroom){

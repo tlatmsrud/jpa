@@ -19,11 +19,9 @@ public class Main {
 
         Student student1 = new Student();
         student1.setName("심승경");
-        em.persist(student1);
 
         Student student2 = new Student();
         student2.setName("홍길동");
-        em.persist(student2);
 
         Classroom classroom = new Classroom();
         classroom.setName("배드민턴반");
@@ -31,6 +29,8 @@ public class Main {
 
         student1.setClassroom(classroom);
         classroom.addStudent(student2);
+        em.persist(student1);
+        em.persist(student2);
 
         List<Student> list = classroom.getStudentList();
         for(Student student : list){
@@ -40,9 +40,14 @@ public class Main {
         tx.commit();
         em.clear();
 
-        Student findStudent = em.getReference(Student.class,1L);
-        System.out.println("findStudent.getName 호출 전");
-        findStudent.getName();
+        // 즉시 로딩을 경우 student와 관련된 classroom도 함께 조회함.
+        // 지연 로딩일 경우 Student 데이터만 조회함.
+        Student findStudent = em.find(Student.class,2L);
+        System.out.println("findStudent =================== "+ findStudent.getName());
+
+
+        // Lazy로딩일 경우 classroom 가져오는 쿼리가 여기서 호출됨.
+        findStudent.getClassroom().getName();
 
         em.close();
         emf.close();
