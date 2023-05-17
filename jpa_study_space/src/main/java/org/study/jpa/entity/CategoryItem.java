@@ -12,12 +12,12 @@ import javax.persistence.*;
 @IdClass(CategoryItemId.class)
 public class CategoryItem extends BaseEntity{
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ITEM_ID")
     private Item item;
 

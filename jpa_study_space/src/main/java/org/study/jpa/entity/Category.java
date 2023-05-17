@@ -16,7 +16,7 @@ public class Category extends BaseEntity{
     @Column(name = "CATEGORY_ID")
     private Long id;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<CategoryItem> categoryItems = new ArrayList<>();
 
     private String name;
