@@ -18,6 +18,8 @@ public class Main {
         findStudent(em);
         deleteClassroom(em);
 
+        insert(em);
+        deleteStudent(em);
         tx.commit();
 
         em.close();
@@ -64,5 +66,10 @@ public class Main {
         Classroom findClassroom = em.find(Classroom.class, 1L);
         em.remove(findClassroom);
         em.flush();
+    }
+
+    public static void deleteStudent(EntityManager em){
+        Classroom classroom = em.find(Classroom.class , 4L);
+        classroom.getStudentList().remove(0);
     }
 }
