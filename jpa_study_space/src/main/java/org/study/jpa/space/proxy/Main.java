@@ -1,9 +1,6 @@
 package org.study.jpa.space.proxy;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.util.List;
 
 public class Main {
@@ -17,6 +14,19 @@ public class Main {
 
         tx.begin();
 
+        insert(em);
+        findStudent(em);
+        deleteClassroom(em);
+
+        tx.commit();
+
+        em.close();
+        emf.close();
+
+
+    }
+
+    public static void insert(EntityManager em){
         Student student1 = new Student();
         student1.setName("심승경");
 
@@ -35,21 +45,24 @@ public class Main {
             System.out.println("========================="+student.getName());
         }
 
-        tx.commit();
+        em.flush();
         em.clear();
+    }
 
+    public static void findStudent(EntityManager em){
         // 즉시 로딩을 경우 student와 관련된 classroom도 함께 조회함.
         // 지연 로딩일 경우 Student 데이터만 조회함.
         Student findStudent = em.find(Student.class,2L);
         System.out.println("findStudent =================== "+ findStudent.getName());
 
-
         // Lazy로딩일 경우 classroom 가져오는 쿼리가 여기서 호출됨.
         findStudent.getClassroom().getName();
+    }
 
-        em.close();
-        emf.close();
+    public static void deleteClassroom(EntityManager em){
 
-
+        Classroom findClassroom = em.find(Classroom.class, 1L);
+        em.remove(findClassroom);
+        em.flush();
     }
 }
