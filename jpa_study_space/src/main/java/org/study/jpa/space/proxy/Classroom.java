@@ -19,7 +19,7 @@ public class Classroom {
 
     private String name;
 
-    @OneToMany(mappedBy = "classroom")
+    @OneToMany(mappedBy = "classroom", cascade = CascadeType.PERSIST)
     private List<Student> studentList = new ArrayList<>();
 
     public void addStudent(Student student){

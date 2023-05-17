@@ -25,13 +25,11 @@ public class Main {
 
         Classroom classroom = new Classroom();
         classroom.setName("배드민턴반");
-        em.persist(classroom);
 
         student1.setClassroom(classroom);
         classroom.addStudent(student2);
-        em.persist(student1);
-        em.persist(student2);
 
+        em.persist(classroom);
         List<Student> list = classroom.getStudentList();
         for(Student student : list){
             System.out.println("========================="+student.getName());
