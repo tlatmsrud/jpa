@@ -33,9 +33,7 @@ public class Main {
     public static void addOrderAndDelivery(EntityManager em){
 
         Delivery delivery = new Delivery();
-        delivery.setCity("시티");
-        delivery.setStreet("거리");
-        delivery.setZipcode("주소");
+        delivery.setAddress(new Address("city","street","zipcode"));
         delivery.setStatus(DeliveryStatus.READY);
 
         OrderItem orderItem = new OrderItem();

@@ -49,9 +49,7 @@ public class RelationMappingMain {
 
         Delivery delivery = new Delivery();
         delivery.setStatus(DeliveryStatus.READY);
-        delivery.setCity("시티");
-        delivery.setStreet("거리");
-        delivery.setZipcode("집주소");
+        delivery.setAddress(new Address("city","street","zipcode"));
         em.persist(delivery);
 
         Order order = new Order();
