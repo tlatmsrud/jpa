@@ -64,6 +64,16 @@ public class LeftJoin {
          *         left outer join
          *             classroom classroom1_
          *                 on student0_.class_id=classroom1_.classroom_id
+         *
+         *      ...
+         *     Student 엔티티의 Classroom은 즉시로딩 정책이므로 classroom 엔티티를 영속성 컨텍스트에 넣기 위한 쿼리가 실행됨
+         *     select
+         *         classroom0_.classroom_id as classroo1_3_0_,
+         *         classroom0_.name as name2_3_0_
+         *     from
+         *         classroom classroom0_
+         *     where
+         *         classroom0_.classroom_id=?
          */
 
         String query = "SELECT s FROM Student s LEFT JOIN s.classroom c";
@@ -73,6 +83,7 @@ public class LeftJoin {
 
         for(Student student : studentList){
             System.out.println(student.getName());
+            System.out.println(student.getClassroom().getName());
         }
     }
 }
