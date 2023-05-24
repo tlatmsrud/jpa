@@ -94,12 +94,30 @@ public class FetchJoin {
          *         classroom0_.classroom_id=?
          *                 */
 
+        //fetch join은 연관된 엔티티간의 객체그래프를 온전히 유지하면서 조회한다. 즉, 관련된 엔티티도 영속성 컨텍스트에서 관리하게 된다.
         String query = "SELECT s FROM Student s LEFT JOIN FETCH s.classroom";
 
         List<Student> studentList = em.createQuery(query, Student.class)
                 .getResultList();
 
-        //
+        // 쿼리가 나가지 않음 = 영속성 컨텍스트에서 이미 classroom을 관리하고 있기 때문임.
+        studentList.get(0).getClassroom().getName();
+
+        System.out.println("-------------------------------");
+        String query2 = "SELECT c FROM Classroom c JOIN FETCH c.studentList WHERE c.name = '배드민턴반'";
+        List<Classroom> classroomList = em.createQuery(query2, Classroom.class)
+                .getResultList();
+
+
+        for(Classroom classroom : classroomList){
+            System.out.println(classroom.getName());
+
+            for(Student student : classroom.getStudentList()){
+                System.out.println(student.getName()); // fetch join으로 인해 student를 조회 시 지연로딩이 발생하지 않음.
+            }
+        }
+
+
 
     }
 }
