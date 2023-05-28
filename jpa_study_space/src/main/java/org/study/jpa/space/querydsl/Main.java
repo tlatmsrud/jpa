@@ -1,10 +1,12 @@
 package org.study.jpa.space.querydsl;
 
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.QueryModifiers;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAUpdateClause;
 import org.springframework.data.repository.core.EntityMetadata;
 import org.study.jpa.entity.Member;
 import org.study.jpa.entity.QMember;
@@ -31,7 +33,7 @@ public class Main {
         tx.begin();
 
         try{
-            dto(em);
+            dynamicQuery(em);
         }catch(Exception e){
             tx.rollback();
         }finally {
@@ -111,16 +113,36 @@ public class Main {
 
     public static void dto(EntityManager em){
         JPAQuery query = new JPAQuery(em);
-
         QMember member = QMember.member;
 
-        List<MemberDto> result = query.select(Projections.bean(MemberDto.class,member.id, member.name))
+        List<MemberDto> result = query.select(Projections.constructor(MemberDto.class,member.id, member.name))
                 .from(member)
                 .fetch();
 
         for(MemberDto memberDto : result){
             System.out.println("name = "+ memberDto.getName());
             System.out.println("id = "+ memberDto.getId());
+        }
+    }
+
+    public static void dynamicQuery(EntityManager em){
+        JPAQuery<Member> query = new JPAQuery(em);
+        QMember member = QMember.member;
+        boolean testerNameCondition = false;
+
+        BooleanBuilder builder = new BooleanBuilder();
+        if(testerNameCondition){
+            builder.and(member.name.contains("테스터"));
+        }
+
+        List<Member> result = query
+                .from(member)
+                .where(builder)
+                .fetch();
+
+        for(Member findMember : result){
+            System.out.println("name = "+ findMember.getName());
+            System.out.println("id = "+ findMember.getId());
         }
     }
 
