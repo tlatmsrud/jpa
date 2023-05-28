@@ -2,7 +2,10 @@ package org.study.jpa.space.querydsl;
 
 
 import com.querydsl.core.QueryModifiers;
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
+import org.springframework.data.repository.core.EntityMetadata;
 import org.study.jpa.entity.Member;
 import org.study.jpa.entity.QMember;
 import org.study.jpa.entity.QOrder;
@@ -13,10 +16,7 @@ import org.study.jpa.main.QTestMember;
 import org.study.jpa.main.TestMember;
 
 import javax.naming.directory.SearchResult;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.util.List;
 
 public class Main {
@@ -31,7 +31,7 @@ public class Main {
         tx.begin();
 
         try{
-            join(em);
+            dto(em);
         }catch(Exception e){
             tx.rollback();
         }finally {
@@ -88,14 +88,40 @@ public class Main {
                 .join(order.member, member)
                 .leftJoin(order.orderItemList, orderItem)
                 .fetch();
-        //      left outer join
-        //            order_item orderiteml2_
-        //                on order0_.order_id=orderiteml2_.order_id
-
         query.from(order)
                 .leftJoin(order.orderItemList, orderItem)
                 .on(orderItem.count.gt(2))
                 .fetch();
+    }
+
+    public static void tuple(EntityManager em){
+        JPAQuery query = new JPAQuery(em);
+
+        QOrder order = QOrder.order;
+        QMember member = QMember.member;
+        QOrderItem orderItem = QOrderItem.orderItem;
+
+        List<Tuple> result = query.select(member.name, member.id).from(member).fetch();
+
+        for(Tuple tuple : result){
+            System.out.println("name = "+ tuple.get(member.name));
+            System.out.println("name = "+ tuple.get(member.id));
+        }
+    }
+
+    public static void dto(EntityManager em){
+        JPAQuery query = new JPAQuery(em);
+
+        QMember member = QMember.member;
+
+        List<MemberDto> result = query.select(Projections.bean(MemberDto.class,member.id, member.name))
+                .from(member)
+                .fetch();
+
+        for(MemberDto memberDto : result){
+            System.out.println("name = "+ memberDto.getName());
+            System.out.println("id = "+ memberDto.getId());
+        }
     }
 
 }
