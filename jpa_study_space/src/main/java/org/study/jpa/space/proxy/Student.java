@@ -8,6 +8,9 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@SqlResultSetMapping(name = "nameWithClassroomName",
+entities = {@EntityResult(entityClass = Student.class)},
+columns = {@ColumnResult(name = "ClassroomName")})
 public class Student {
 
     @Id
